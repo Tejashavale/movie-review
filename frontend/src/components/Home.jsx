@@ -1,8 +1,9 @@
-
+import Movies from "./Movies/Movies"
 
 const Home = () => {
     return <>
-        <h1>Hello world</h1>
+        <h1>Movies</h1>
+        <Movies></Movies>
     </>
 }
 
