@@ -4,7 +4,7 @@ import './styles.css'
 
 const Movies = () => {
 
-    const [movies, setMovies] = useState([])
+    const [movies, setMovies] = useState(undefined)
 
     useEffect(() => {
         fetch("https://api.themoviedb.org/3/discover/movie", {
@@ -14,15 +14,19 @@ const Movies = () => {
             }
         })
             .then(response => response.json())
-            .then(data => { setMovies(data.results) })
+            .then(data => { setMovies(data) })
     }, [])
 
 
-    return <div className="movies">
+    return <div>
         {
-            movies.length ? movies.map((item) => {
-                return <MovieCard key={item.id} title={item.title} image={item.poster_path}></MovieCard>
-            }) :
+            movies?.results?.length ?
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                    {movies.results.map((item) => {
+                        return <MovieCard key={item.id} movie={item}></MovieCard>
+                    })}
+                    <h3>{movies.page} / {movies.total_pages}</h3>
+                </div> :
                 <h1>Loading...</h1>
         }
     </div>
