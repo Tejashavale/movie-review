@@ -1,0 +1,12 @@
+.movie-card {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin: 2.5%;
+    /* border: solid black 1px; */
+    justify-content: space-between;
+}
+
+img {
+    border: 1px solid white;
+}
